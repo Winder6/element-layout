@@ -11,8 +11,15 @@ import store from './store'
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
-Vue.directive('highlight',function (el) {
+Vue.directive('highlight',{
+  bind:function (el, binding) {
+    el.textContent = binding.value;
     hljs.highlightBlock(el)
+  },
+  componentUpdated:function (el, binding) {
+    el.textContent = binding.value;
+    hljs.highlightBlock(el)
+  }
 })
 
 /* eslint-disable no-new */
