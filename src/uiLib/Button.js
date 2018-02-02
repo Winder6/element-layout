@@ -1,6 +1,6 @@
 import store from "../store"
 
-export default class Button2 {
+export default class Button {
   constructor(id) {
     this.uid=id
     this.name = 'Button'
@@ -94,7 +94,6 @@ export default class Button2 {
       nativeOn: {
         click: function (e) {
           console.log(e)
-
           store.commit('setEditingAttr', e.target)
         }
       },

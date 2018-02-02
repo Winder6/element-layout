@@ -7,8 +7,12 @@ import hljs from 'highlight.js'
 import App from './App'
 import router from './router'
 import store from './store'
+import './style/index.less'
+import myPlugin from './myPlugin'
 
+console.log(myPlugin);
 Vue.use(ElementUI);
+Vue.use(myPlugin);
 Vue.config.productionTip = false;
 
 Vue.directive('highlight',{
@@ -21,6 +25,17 @@ Vue.directive('highlight',{
     hljs.highlightBlock(el)
   }
 })
+
+// Vue.directive('dropable',{
+//   bind:function (el, binding) {
+//     el.ondrop=function (e) {
+//       let uiName = e.dataTransfer.getData("uiName");
+//       binding.value.children.push(new ComponentsLib[uiName]());
+//         e.stopPropagation()
+//       console.log(binding)
+//     }
+//   }
+// })
 
 /* eslint-disable no-new */
 new Vue({

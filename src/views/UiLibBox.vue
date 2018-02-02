@@ -1,6 +1,7 @@
 <template>
     <div>
       <ui-item name="Button"></ui-item>
+      <ui-item name="Form"></ui-item>
       <p  draggable="true" @dragstart="dragstart" @drag="drag">
         主要按钮
       </p>

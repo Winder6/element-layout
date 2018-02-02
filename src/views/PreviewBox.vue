@@ -1,6 +1,6 @@
 <template>
   <div class="layout-box" id="div1" @drop="drop" @dragover="allowDrop">
-    <render-layout :components="components"></render-layout>
+    <render-layout :components="components" class="show-border"></render-layout>
   </div>
 </template>
 
@@ -27,11 +27,11 @@
         e.preventDefault();
       },
       drop(e) {
-        let data = e.dataTransfer.getData("uiName");
-        console.log(data)
+        console.log(e)
+        let uiName = e.dataTransfer.getData("uiName");
         let name = 'Button'
         let uid = guid()
-        let ex = new ComponentsLib[name](uid)
+        let ex = new ComponentsLib[uiName](uid)
 
         this.components.push(ex);
         this.$store.commit('setComponents',this.components)

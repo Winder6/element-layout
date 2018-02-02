@@ -18,7 +18,7 @@
       title="提示"
       :visible.sync="codeDialogVisible"
       width="80%">
-      <pre contenteditable="true"><code v-highlight class="html">{{code}}</code></pre>
+      <pre contenteditable="true"><code v-highlight="code" class="html"></code></pre>
       <span slot="footer" class="dialog-footer">
     <el-button @click="codeDialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="codeDialogVisible = false">确 定</el-button>
@@ -36,7 +36,8 @@
     name: "",
     data() {
       return {
-          codeDialogVisible:false
+          codeDialogVisible:false,
+
       }
     },
     computed:{
@@ -46,8 +47,9 @@
     },
     methods: {
       showCode(){
-        this.$store.dispatch('convertToCode')
-        this.codeDialogVisible=true
+        this.$store.dispatch('convertToCode');
+          this.codeDialogVisible=true
+
 
         // let data=this.components[0];
         // let attr = 'type=primary';
