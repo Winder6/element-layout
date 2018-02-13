@@ -1,15 +1,17 @@
 import store from "../store"
 import ComponentsLib from '../uiLib/index.js'
-export default class Form {
+export default class FormItem {
   constructor(id) {
     this.uid=id
-    this.name = 'Form'
+    this.name = 'FormItem'
     this.children=[]
-    this.template = '<el-form{attr}>{innerHTML}</el-form>'
+    this.template = '<el-form-item{attr}>{innerHTML}</el-form-item>'
     this.attr = {
-      labelWidth: {
+      label: {
         type: 'text',
-        value: '80px',
+        // compileType: 'innerHTML',
+        value: '项目一',
+        desc: '',
         name:'text'
       },
     }
@@ -18,10 +20,10 @@ export default class Form {
   render(createElement){
     const context = this;
     return createElement(
-      'el-form',
+      'el-form-item',
       {
       props: {
-        labelWidth: this.attr.labelWidth.value,
+        label: this.attr.label.value,
         // icon: {
         //   type: String,
         //   default: ''
@@ -45,8 +47,6 @@ export default class Form {
         directives: [{
           name: 'dropable',
           value: context
-        },{
-        name:'editable'
         }],
       domProps: {
         componentData: this,
@@ -54,7 +54,8 @@ export default class Form {
       },
       nativeOn: {
         click: function (e) {
-          store.commit('setEditingAttr', e)
+          console.log(e)
+          store.commit('setEditingAttr', e);
         },
         // drop:function (e) {
         //   console.log(e);

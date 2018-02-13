@@ -1,10 +1,11 @@
 <template>
     <div>
+      <h4 class="title">组件库</h4>
       <ui-item name="Button"></ui-item>
       <ui-item name="Form"></ui-item>
-      <p  draggable="true" @dragstart="dragstart" @drag="drag">
-        主要按钮
-      </p>
+      <ui-item name="FormItem"></ui-item>
+      <ui-item name="Input"></ui-item>
+      <ui-item name="FormItemInput"></ui-item>
     </div>
 </template>
 
@@ -35,5 +36,9 @@
 </script>
 
 <style lang="less" type="text/less">
+  .title{
+    line-height: 60px;
+    margin: 0;
 
+  }
 </style>

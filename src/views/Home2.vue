@@ -1,15 +1,13 @@
 <template>
-  <el-container style="height: 100%;">
-    <el-header class="header-box">
-        <el-button type="default" @click="showCode">code</el-button>
-      <el-button type="default" @click="hello">hello</el-button>
-    </el-header>
-    <el-container >
+  <el-container style="height: 100%;background: #f5f5f5;">
+    <el-container>
       <el-aside class="ul-lib-box-container" width="250px">
           <ui-lib-box></ui-lib-box>
       </el-aside>
       <el-main>
-        <preview-box></preview-box>
+        <!--<el-button type="primary" @click="showCode">code</el-button>-->
+        <!--<el-button type="primary" @click="hello">hello</el-button>-->
+        <preview-box @showCode="showCode"></preview-box>
       </el-main>
       <el-aside class="attr-editor-container" width="250px">
           <attr-editor></attr-editor>
@@ -71,16 +69,15 @@
 </script>
 
 <style scoped>
-  .header-box {
-    background-color: #fff;
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
     color: #333;
     text-align: center;
     line-height: 60px;
-    box-shadow: 0 2px 8px #f0f1f2;
   }
 
   .ul-lib-box-container{
-    padding: 10px;
+    padding-left: 10px;
   }
 
   .attr-editor-container{

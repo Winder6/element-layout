@@ -10,7 +10,6 @@ import store from './store'
 import './style/index.less'
 import myPlugin from './myPlugin'
 
-console.log(myPlugin);
 Vue.use(ElementUI);
 Vue.use(myPlugin);
 Vue.config.productionTip = false;

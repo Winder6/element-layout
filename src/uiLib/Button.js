@@ -88,13 +88,13 @@ export default class Button {
         // }
       },
       domProps: {
-        controlConfig: this,
+        componentData: this,
         innerHTML: this.attr.name.value
       },
       nativeOn: {
         click: function (e) {
           console.log(e)
-          store.commit('setEditingAttr', e.target)
+          store.commit('setEditingAttr', e)
         }
       },
     })

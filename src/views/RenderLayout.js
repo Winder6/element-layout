@@ -1,18 +1,13 @@
-import LayoutData from '../uiLib/LayoutData'
-
 export default {
   name:'RenderLayout',
   props:{
       components:{
-        type:Array,
-        default:[]
+        type:Object,
+        default:{}
       }
   },
   render(h) {
-    const myLayoutData = new LayoutData;
-    // myLayoutData.children = JSON.parse(JSON.stringify(this.components))
-    myLayoutData.children.push(...this.components);
-    return myLayoutData.render(h)
-    // return createElement('el-button',  '主要按钮');
+    console.log(this.components)
+    return this.components.render(h)
   }
 }
