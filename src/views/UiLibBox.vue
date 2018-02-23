@@ -37,8 +37,10 @@
 
 <style lang="less" type="text/less">
   .title{
+    font-size: 24px;
+    font-weight: normal;
     line-height: 60px;
-    margin: 0;
+    margin: 0 0 10px 0;
 
   }
 </style>

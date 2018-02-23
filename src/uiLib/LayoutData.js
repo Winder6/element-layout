@@ -1,3 +1,4 @@
+import store from  '../store'
 
 export default class LayoutData {
   constructor(id) {
@@ -8,7 +9,6 @@ export default class LayoutData {
     this.nickname = 'DropPanel'
     this.render = function (createElement) {
       const context = this
-      const store = createElement.store
       if (!context.initScript) {
         context.initScript = true
       }
@@ -25,9 +25,9 @@ export default class LayoutData {
           'class': {
             'soul-drop-panel': true
           },
-          nativeOn: {
+          on: {
             click: function (e) {
-              store.commit('dragModule/showEditorPanel', e)
+              store.commit('hideRightClickMenu')
             }
           },
         },

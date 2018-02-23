@@ -1,8 +1,9 @@
 import store from "../store"
 
 export default class Button {
-  constructor(id) {
-    this.uid=id
+  constructor(uid,pid) {
+    this.uid=uid;
+    this.pid=pid;
     this.name = 'Button'
     this.template = '<el-button{attr}>{innerHTML}</el-button>'
     this.attr = {
@@ -91,12 +92,11 @@ export default class Button {
         componentData: this,
         innerHTML: this.attr.name.value
       },
-      nativeOn: {
-        click: function (e) {
-          console.log(e)
-          store.commit('setEditingAttr', e)
+      directives: [
+        {
+          name: 'editable'
         }
-      },
+      ],
     })
   }
 }

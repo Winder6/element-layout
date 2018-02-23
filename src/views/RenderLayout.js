@@ -7,7 +7,7 @@ export default {
       }
   },
   render(h) {
-    console.log(this.components)
+    // console.log(this.components)
     return this.components.render(h)
   }
 }

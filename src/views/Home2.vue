@@ -28,7 +28,7 @@
 
 <script>
   import UiLibBox from './UiLibBox'
-  import PreviewBox from './PreviewBox'
+  import PreviewBox from './WorkBox'
   import AttrEditor from './AttrEditor.vue'
   import Test from './Test.js'
   export default {
@@ -86,7 +86,7 @@
 
 
   .el-main {
-    padding: 10px;
+    padding: 20px;
     color: #333;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="attr-editor-box">
-      <h4>属性设置：{{editingAttr.name}}</h4>
+      <h4>属性：{{editingAttr.name}}</h4>
       <el-form label-position="left" ref="form" :model="form" label-width="70px" size="small">
         <div v-for="(config, index) in editingAttr.attr">
           <el-form-item  v-if="config.type === 'text'" :label="config.name">
@@ -50,13 +50,15 @@
 <style lang="less" type="text/less">
     .attr-editor-box{
         h4{
+          font-size: 24px;
+          font-weight: normal;
           line-height: 60px;
-          margin: 0 0 20px 0;
-          border-bottom: 1px solid #ddd;
+          margin: 0 0 10px 0;
+          /*border-bottom: 1px solid #ddd;*/
         }
-      .el-input__inner{
-        background: #f4f4f4 !important;
-      }
+      /*.el-input__inner{*/
+        /*background: #f4f4f4 !important;*/
+      /*}*/
     }
 
 </style>

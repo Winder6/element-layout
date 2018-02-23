@@ -1,8 +1,9 @@
 import store from "../store"
 import ComponentsLib from '../uiLib/index.js'
 export default class FormItem {
-  constructor(id) {
-    this.uid=id
+  constructor(uid,pid) {
+    this.uid = uid
+    this.pid=pid
     this.name = 'FormItem'
     this.children=[]
     this.template = '<el-form-item{attr}>{innerHTML}</el-form-item>'
@@ -44,32 +45,18 @@ export default class FormItem {
         'class': {
           'ui-item-box': true
         },
-        directives: [{
+        directives: [
+          {
           name: 'dropable',
           value: context
-        }],
+        },
+          {
+            name: 'editable'
+          }
+        ],
       domProps: {
         componentData: this,
         // innerHTML: this.attr.name.value
-      },
-      nativeOn: {
-        click: function (e) {
-          console.log(e)
-          store.commit('setEditingAttr', e);
-        },
-        // drop:function (e) {
-        //   console.log(e);
-        //   let uiName = e.dataTransfer.getData("uiName");
-        //   // let uid = guid()
-        //
-        //   console.log(uiName);
-        //   let ex = new ComponentsLib[uiName]();
-        //   context.children.push(ex);
-        //   // this.$store.commit('setComponents',this.components)
-        //   // this.components.push(new ComponentsLib[name](uid));
-        //   e.preventDefault();
-        //   e.stopPropagation()
-        // },
       },
     },
       this.children.map(function (child) {

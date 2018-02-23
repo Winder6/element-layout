@@ -1,8 +1,9 @@
 import store from "../store"
 import Input from './Input.js'
 export default class FormItemInput {
-  constructor(id) {
-    this.uid=id
+  constructor(uid,pid) {
+    this.uid = uid
+    this.pid=pid
     this.name = 'FormItem'
     this.children=[
       new Input()

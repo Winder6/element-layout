@@ -1,18 +1,18 @@
 <template>
   <el-container style="height: 100%;">
     <el-header class="header-box">
-        <el-button type="default" @click="showCode">code</el-button>
+      <el-button type="default" @click="showCode">code</el-button>
       <el-button type="default" @click="hello">hello</el-button>
     </el-header>
-    <el-container >
+    <el-container class="main-box">
       <el-aside class="ul-lib-box-container" width="250px">
-          <ui-lib-box></ui-lib-box>
+        <ui-lib-box></ui-lib-box>
       </el-aside>
       <el-main>
-        <preview-box></preview-box>
+        <work-box></work-box>
       </el-main>
       <el-aside class="attr-editor-container" width="250px">
-          <attr-editor></attr-editor>
+        <attr-editor></attr-editor>
       </el-aside>
     </el-container>
     <el-dialog
@@ -25,31 +25,35 @@
     <el-button type="primary" @click="codeDialogVisible = false">确 定</el-button>
   </span>
     </el-dialog>
+    <ul class="el-dropdown-menu el-popper right-click-menu"
+        :style="rightClickMenuData.style">
+      <li class="el-dropdown-menu__item" @click="deleteComponent">删除</li>
+    </ul>
   </el-container>
 </template>
 
 <script>
   import UiLibBox from './UiLibBox'
-  import PreviewBox from './PreviewBox'
+  import WorkBox from './WorkBox'
   import AttrEditor from './AttrEditor.vue'
   import Test from './Test.js'
+  import {mapGetters, mapMutations} from 'vuex'
+  import {findComponentByUid} from "../util"
+
   export default {
     name: "",
     data() {
       return {
-          codeDialogVisible:false,
-
+        codeDialogVisible: false,
       }
     },
-    computed:{
-      code(){
-        return this.$store.state.code
-      }
+    computed: {
+      ...mapGetters(['components','code','rightClickMenuData']),
     },
     methods: {
-      showCode(){
+      showCode() {
         this.$store.dispatch('convertToCode');
-          this.codeDialogVisible=true
+        this.codeDialogVisible = true
 
 
         // let data=this.components[0];
@@ -57,14 +61,24 @@
         // let code = data.template;
         // console.log(code)
       },
-      hello(){
+      hello() {
         console.log(this.$refs.test)
-      }
+      },
+      deleteComponent(){
+        // console.log(this.components);
+        let uid = this.rightClickMenuData.uid;
+        let deleteItem = findComponentByUid(this.components,uid);
+        let patentItem = findComponentByUid(this.components,deleteItem.pid)
+        console.log(deleteItem,patentItem);
+        let index = patentItem.children.indexOf(deleteItem);
+        patentItem.children.splice(index, 1);
+        this.$store.commit('hideRightClickMenu')
+      },
     },
     components: {
       UiLibBox,
       AttrEditor,
-      PreviewBox,
+      WorkBox,
       Test
     }
   }
@@ -72,24 +86,35 @@
 
 <style scoped>
   .header-box {
-    background-color: #fff;
     color: #333;
     text-align: center;
     line-height: 60px;
-    box-shadow: 0 2px 8px #f0f1f2;
+    border-bottom: 1px solid #eee;
+    /*box-shadow: 0 2px 8px #f0f1f2;*/
   }
 
-  .ul-lib-box-container{
+  .main-box {
+    background: #f9fbfb;
+  }
+
+  .ul-lib-box-container {
+    border-right: 1px solid #eee;
     padding: 10px;
   }
 
-  .attr-editor-container{
-    padding-right: 10px;
+  .attr-editor-container {
+    border-left: 1px solid #eee;
+    padding: 10px;
   }
-
 
   .el-main {
-    padding: 10px;
+    padding: 15px;
     color: #333;
+  }
+
+  .right-click-menu{
+    display: none;
+    position: absolute;
+    z-index: 10001;
   }
 </style>

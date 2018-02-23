@@ -1,8 +1,9 @@
 import store from "../store"
 import ComponentsLib from '../uiLib/index.js'
 export default class Input {
-  constructor(id) {
-    this.uid=id
+  constructor(uid,pid) {
+    this.uid = uid
+    this.pid=pid
     this.name = 'FormItem'
     this.children=[]
     this.template = '<el-input{attr}>{innerHTML}</el-input>'
@@ -54,19 +55,14 @@ export default class Input {
         //   default:false
         // }
       },
-        directives: [{
-          name: 'dropable',
-          value: context
-        }],
+        directives: [
+          {
+            name: 'editable'
+          }
+        ],
       domProps: {
         componentData: this,
         // innerHTML: this.attr.name.value
-      },
-      nativeOn: {
-        click: function (e) {
-          console.log(e)
-          store.commit('setEditingAttr', e);
-        },
       },
     }
       )

@@ -45,3 +45,19 @@ function getCode(components){
   return html
 }
 
+export function findComponentByUid(components,uid){
+  if(components.uid===uid){
+    return components
+  }
+  let item;
+  if(components.children){
+    for(let i =0; i < components.children.length;i++){
+      item=findComponentByUid(components.children[i],uid);
+      if(item){
+        return item
+      }
+    }
+  }
+
+}
+
